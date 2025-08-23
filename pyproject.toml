@@ -1,0 +1,24 @@
+[project]
+name = "higgs-kernels"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Vladimir Malinovskii", email = "galqiwi@gmail.com" }
+]
+requires-python = ">=3.9"
+dependencies = [
+    "ninja>=1.13.0",
+    "torch>=2.8.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "numpy>=2.0.2",
+    "pytest>=8.4.1",
+    "requests>=2.32.5",
+]
