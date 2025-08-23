@@ -1,7 +1,7 @@
 [project]
 name = "higgs-kernels"
 version = "0.1.0"
-description = "Add your description here"
+description = "Kernels for higgs quantization"
 readme = "README.md"
 authors = [
     { name = "Vladimir Malinovskii", email = "galqiwi@gmail.com" }
