@@ -1,6 +1,6 @@
 [project]
 name = "higgs-kernels"
-version = "0.2.0"
+version = "0.2.1"
 description = "Kernels for higgs quantization"
 readme = "README.md"
 authors = [
