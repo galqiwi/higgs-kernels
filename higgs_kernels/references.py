@@ -1,7 +1,7 @@
 import torch
 
 
-def higgs_dequantize_torch(x, grid):
+def higgs_dequantize_2_256_torch(x, grid):
     assert grid.dtype in (torch.float16, torch.bfloat16)
     assert x.dtype == torch.uint8
     assert grid.shape == (256, 2)
@@ -17,7 +17,7 @@ def higgs_dequantize_torch(x, grid):
     return out
 
 
-def higgs_quantize_torch(x, grid, grid_norms):
+def higgs_quantize_2_256_torch(x, grid, grid_norms):
     assert x.dtype == grid.dtype == grid_norms.dtype
     assert x.dtype in (torch.float16, torch.bfloat16)
     assert grid.shape == (256, 2), grid.shape
