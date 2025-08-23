@@ -1,6 +1,7 @@
-import os
-import torch
 import functools
+import os
+
+import torch
 from torch.utils.cpp_extension import load
 
 PKG_PATH = os.path.dirname(os.path.realpath(__file__))

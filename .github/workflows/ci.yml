@@ -21,5 +21,8 @@ jobs:
     - name: ruff check
       run:  uv tool run ruff check
 
+    - name: ruff sort imports
+      run:  uv tool run ruff check --select I
+
     - name: ruff format
       run:  uv tool run ruff format --check
