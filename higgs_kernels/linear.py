@@ -1,6 +1,5 @@
 import torch
 
-from higgs_kernels import higgs_dequantize_2_256_kernel, higgs_quantize_2_256_kernel
 from higgs_kernels.hadamard import hadamard_transform
 from higgs_kernels.references import (
     higgs_dequantize_2_256_torch,
