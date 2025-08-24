@@ -1,9 +1,9 @@
 import torch
 
 from higgs_kernels.hadamard import hadamard_transform
-from higgs_kernels.references import (
-    higgs_dequantize_2_256_torch,
-    higgs_quantize_2_256_torch,
+from higgs_kernels.kernels import (
+    higgs_dequantize_2_256_kernel,
+    higgs_quantize_2_256_kernel,
 )
 
 
@@ -33,7 +33,7 @@ def higgs_quantize_linear_2_256(weight, grid, group_size):
 
     weight = weight.reshape(-1, 2)
 
-    quantized = higgs_quantize_2_256_torch(weight, grid, grid_norms)
+    quantized = higgs_quantize_2_256_kernel(weight, grid, grid_norms)
     assert quantized.shape == (out_dim * in_dim // 2,)
     assert quantized.dtype == torch.uint8
 
@@ -50,7 +50,7 @@ def higgs_dequantize_linear_2_256(quantized, scales, grid, group_size):
     assert grid.dtype == scales.dtype
     assert scales.device == quantized.device == grid.device
 
-    output = higgs_dequantize_2_256_torch(quantized, grid)
+    output = higgs_dequantize_2_256_kernel(quantized, grid)
     assert output.shape == (out_dim * in_dim // 2, 2)
 
     output = output.reshape(out_dim, groups_per_input, group_size)
