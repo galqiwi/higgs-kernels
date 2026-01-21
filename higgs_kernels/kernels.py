@@ -46,7 +46,14 @@ def higgs_dequantize_2_256_kernel(x, grid):
     (out_dim,) = x.shape
     assert out_dim > 0
 
+    # Kernel uses uint32 vectorized loads (4 bytes) and uint4 vectorized stores (16 bytes)
+    # CUDA allocations are 256-byte aligned, so this should always pass
+    assert x.data_ptr() % 4 == 0, "Input tensor must be 4-byte aligned for vectorized loads"
+
     out = torch.zeros((out_dim, 2), dtype=grid.dtype, device=grid.device)
+
+    # Output needs 16-byte alignment for uint4 vectorized stores
+    assert out.data_ptr() % 16 == 0, "Output tensor must be 16-byte aligned for vectorized stores"
 
     get_dequantize_kernels().higgs_dequantize_2_256_ptr_cuda_portable(
         x.data_ptr(), grid.data_ptr(), out.data_ptr(), out_dim
